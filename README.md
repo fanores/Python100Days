@@ -25,3 +25,7 @@
 ## Day 6
 
 - Python funtions.
+
+## Day 7
+
+- Hangman (combines knowledge from previous days).
