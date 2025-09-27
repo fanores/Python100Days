@@ -14,3 +14,20 @@
 # Step 6: Repeat steps 2-5 until the user guesses the word or runs out of attempts
 # Step 7: Congratulate the user if they win, or reveal the word if they lose
 
+# Import the random module to choose a random word
+import random
+
+word_list = ["ardvark", "baboon", "camel"]
+
+random_word = random.choice(word_list)
+word_length = len(random_word)
+print(f'Pssst, the solution is {random_word} of length {word_length}.')
+
+guessed_letter = input("Guess a letter: ").lower()
+
+for letter in random_word:
+    if letter == guessed_letter:
+        print("True")
+    else:
+        print("False")
+
