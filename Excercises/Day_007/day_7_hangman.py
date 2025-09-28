@@ -19,15 +19,29 @@ import random
 
 word_list = ["ardvark", "baboon", "camel"]
 
+# 1. Pick a random word from the word_list and assign it to a variable called random_word
 random_word = random.choice(word_list)
 word_length = len(random_word)
-print(f'Pssst, the solution is {random_word} of length {word_length}.')
 
+# 2. Set a variable that will display the current state of the guessed word 
+display_word = ""
+for character in range(word_length):
+    display_word += "_"
+
+# 3. Output the word to the console for the user to see
+print(f'Pssst, the solution is {random_word} of length {word_length}.')
+print(f"{display_word}")
+
+# 4. Ask the user for a letter and display it in the display_word if it exists in the random_word
 guessed_letter = input("Guess a letter: ").lower()
 
+display_word = ""
 for letter in random_word:
     if letter == guessed_letter:
-        print("True")
+        display_word += guessed_letter
     else:
-        print("False")
+        display_word += "_"
+        
+# 4. Show the result of the guessed letter
+print(display_word)
 
