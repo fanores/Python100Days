@@ -34,19 +34,20 @@ print(f"{display_word}")
 
 # 4. Ask the user for a letter
 is_word_guessed = False
-display_word = ""
+guessed_letters = []
 while not is_word_guessed:
     guessed_letter = input("Guess a letter: ").lower()
-
+    display_word = ""
+    
     # 5. Process if the letter exists in the random_word
-    character_index = 0
     for letter in random_word:
-        character_index += 1
         if letter == guessed_letter:
-            display_word = display_word[:character_index - 1] + guessed_letter + display_word[character_index:]        
+            display_word += guessed_letter
+            guessed_letters.append(guessed_letter)
+        elif letter in guessed_letters:
+            display_word += letter
         else:
-            if character_index > len(display_word):
-                display_word += "_"
+            display_word += "_"
             
     # 6. Show the result of the guessed letters
     print(display_word)
