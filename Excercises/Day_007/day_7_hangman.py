@@ -32,16 +32,25 @@ for character in range(word_length):
 print(f'Pssst, the solution is {random_word} of length {word_length}.')
 print(f"{display_word}")
 
-# 4. Ask the user for a letter and display it in the display_word if it exists in the random_word
-guessed_letter = input("Guess a letter: ").lower()
-
+# 4. Ask the user for a letter
+is_word_guessed = False
 display_word = ""
-for letter in random_word:
-    if letter == guessed_letter:
-        display_word += guessed_letter
-    else:
-        display_word += "_"
-        
-# 4. Show the result of the guessed letter
-print(display_word)
+while not is_word_guessed:
+    guessed_letter = input("Guess a letter: ").lower()
 
+    # 5. Process if the letter exists in the random_word
+    character_index = 0
+    for letter in random_word:
+        character_index += 1
+        if letter == guessed_letter:
+            display_word = display_word[:character_index - 1] + guessed_letter + display_word[character_index:]        
+        else:
+            if character_index > len(display_word):
+                display_word += "_"
+            
+    # 6. Show the result of the guessed letters
+    print(display_word)
+
+    # 7. Assess if the user has guessed all the letters
+    if "_" not in display_word:
+        is_word_guessed = True
