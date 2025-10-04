@@ -19,6 +19,64 @@ import random
 
 word_list = ["ardvark", "baboon", "camel"]
 
+hangman_stages = ['''
+   +--+
+   |  |
+      |
+      |
+      |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+      |
+      |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+   |  |
+      |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+  ||  |
+      |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+  ||| |
+      |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+  ||| |
+  |   |
+      |
+  =====
+''', '''
+   +--+
+   |  |
+   O  |
+  ||| |
+  | | |
+      |
+  =====
+''']
+
 # 1. Pick a random word from the word_list and assign it to a variable called random_word
 random_word = random.choice(word_list)
 word_length = len(random_word)
@@ -32,10 +90,12 @@ for character in range(word_length):
 print(f'Pssst, the solution is {random_word} of length {word_length}.')
 print(f"{display_word}")
 
-# 4. Ask the user for a letter
+# 4. Start the game, set lives and ask the user for a letter
+lives = 6
 is_word_guessed = False
+is_game_over = False
 guessed_letters = []
-while not is_word_guessed:
+while not is_game_over:
     guessed_letter = input("Guess a letter: ").lower()
     display_word = ""
     
@@ -48,10 +108,24 @@ while not is_word_guessed:
             display_word += letter
         else:
             display_word += "_"
+    
+    if guessed_letter not in random_word:
+        lives -= 1
             
     # 6. Show the result of the guessed letters
     print(display_word)
+    print(hangman_stages[6 - lives])
 
-    # 7. Assess if the user has guessed all the letters
+    # 7. Assess if the user has guessed all the letters or has enough lives
     if "_" not in display_word:
         is_word_guessed = True
+        is_game_over = True
+
+    if lives <= 0:
+        is_game_over = True
+
+# 8. After the game, show the final message
+if is_word_guessed:
+    print(f'Congratulations! You have guessed the word --{display_word}-- correctly!')
+else:
+    print(f'Sorry, you ran out of lives. The word was --{random_word}--. Better luck next time!')
