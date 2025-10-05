@@ -16,66 +16,9 @@
 
 # Import the random module to choose a random word
 import random
-
-word_list = ["ardvark", "baboon", "camel"]
-
-hangman_stages = ['''
-   +--+
-   |  |
-      |
-      |
-      |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-      |
-      |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-   |  |
-      |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-  ||  |
-      |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-  ||| |
-      |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-  ||| |
-  |   |
-      |
-  =====
-''', '''
-   +--+
-   |  |
-   O  |
-  ||| |
-  | | |
-      |
-  =====
-''']
+# Import the hangman artefacts
+from day_7_hangman_words import word_list
+from day_7_hangman_art import hangman_stages, hangman_logo
 
 # 1. Pick a random word from the word_list and assign it to a variable called random_word
 random_word = random.choice(word_list)
@@ -86,9 +29,11 @@ display_word = ""
 for character in range(word_length):
     display_word += "_"
 
-# 3. Output the word to the console for the user to see
+# 3. Print the logo at the start of the game + testing information
 print(f'Pssst, the solution is {random_word} of length {word_length}.')
 print(f"{display_word}")
+
+print(hangman_logo)
 
 # 4. Start the game, set lives and ask the user for a letter
 lives = 6
@@ -98,7 +43,11 @@ guessed_letters = []
 while not is_game_over:
     guessed_letter = input("Guess a letter: ").lower()
     display_word = ""
-    
+
+    if guessed_letter in guessed_letters:
+        print(f"You have already guessed the letter --{guessed_letter}--. Try another letter.")
+        continue
+        
     # 5. Process if the letter exists in the random_word
     for letter in random_word:
         if letter == guessed_letter:
@@ -111,6 +60,7 @@ while not is_game_over:
     
     if guessed_letter not in random_word:
         lives -= 1
+        print(f"Your letter --{guessed_letter}-- is not in the word. You have --{lives}-- left.")
             
     # 6. Show the result of the guessed letters
     print(display_word)
@@ -126,6 +76,6 @@ while not is_game_over:
 
 # 8. After the game, show the final message
 if is_word_guessed:
-    print(f'Congratulations! You have guessed the word --{display_word}-- correctly!')
+    print(f"Congratulations! You have guessed the word --{display_word}-- correctly!")
 else:
-    print(f'Sorry, you ran out of lives. The word was --{random_word}--. Better luck next time!')
+    print(f"Sorry, you ran out of lives. The word was --{random_word}--. Better luck next time!")
