@@ -29,3 +29,7 @@
 ## Day 7
 
 - Hangman (combines knowledge from previous days).
+
+## Day 8
+
+- Function parameters.
