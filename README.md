@@ -33,3 +33,7 @@
 ## Day 8
 
 - Function parameters.
+
+## Day 9
+
+- Dictionaries.
