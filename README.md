@@ -37,3 +37,7 @@
 ## Day 9
 
 - Dictionaries.
+
+## Day 10
+
+- Functions with Outputs.
