@@ -45,3 +45,8 @@
 ## Day 11
 
 - Capstone (blackjack) project.
+
+## Day 12
+
+- Local vs. global scope.
+- Number guessing project.
