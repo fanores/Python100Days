@@ -26,3 +26,18 @@ if game_level < 5:
     
 # Print content of level_up_message variable outside of the IF BLOCK to demonstrate that it is accessible due to the lack of block scope in Python.
 print(level_up_message)
+
+# Modifying global variables inside a function
+def modify_global_variable():
+    global my_variable  # Declare that we want to use the global variable
+    my_variable = 100  # Modify the global variable
+
+modify_global_variable()
+print(f"Modified global variable, my_variable is: {my_variable}")
+
+# Other way to modify global variables
+def modify_global_variable_attempt_2(variable_to_modify):
+    return variable_to_modify + 900
+
+my_variable = modify_global_variable_attempt_2(my_variable)
+print(f"Modified global variable using return statement, my_variable is: {my_variable}")
