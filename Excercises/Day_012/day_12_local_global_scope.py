@@ -2,6 +2,10 @@
 # Python - Local & Global Scope
 ##################################################
 
+# Global constants
+# Convention is to use uppercase letters for global constants to differentiate them from variables.
+PI = 3.14159
+
 # Global Variables
 my_variable = 1
 my_other_global_variable = 3
@@ -41,3 +45,9 @@ def modify_global_variable_attempt_2(variable_to_modify):
 
 my_variable = modify_global_variable_attempt_2(my_variable)
 print(f"Modified global variable using return statement, my_variable is: {my_variable}")
+
+# Working with constants
+def print_pi():
+    print(f"The value of PI is: {PI}")
+
+print_pi()
